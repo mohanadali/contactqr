@@ -42,7 +42,12 @@ if st.button("Generate QR Code"):
         EMAIL:{email}
         URL:{website if website else ''}
         END:VCARD
-        """
+        """.strip()
+
+        # Debug: Show the data being encoded
+        st.write("Encoded Data:")
+        st.code(qr_data)
+
         # Generate QR code
         img = generate_qr_code(qr_data)
 
