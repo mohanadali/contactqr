@@ -29,24 +29,22 @@ website = st.text_input("Website (optional)")
 
 if st.button("Generate QR Code"):
     if not name or not phone or not email:
-        st.error("Name, phone, and email are required!")
+        st.error("Full Name, Phone Number, and Email Address are required!")
     else:
         # Format vCard data
-        qr_data = f"""
-        BEGIN:VCARD
-        VERSION:3.0
-        FN:{name}
-        TITLE:{job_title}
-        ORG:{company}
-        TEL:{phone}
-        EMAIL:{email}
-        URL:{website if website else ''}
-        END:VCARD
-        """.strip()
-
+        qr_data = f"""BEGIN:VCARD
+VERSION:3.0
+FN:{name}
+TITLE:{job_title}
+ORG:{company}
+TEL:{phone}
+EMAIL:{email}
+URL:{website if website else ''}
+END:VCARD"""
+        
         # Debug: Show the data being encoded
-        st.write("Encoded Data:")
-        st.code(qr_data)
+        st.write("Encoded vCard Data:")
+        st.code(qr_data, language="plaintext")
 
         # Generate QR code
         img = generate_qr_code(qr_data)
